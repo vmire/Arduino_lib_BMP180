@@ -1,5 +1,5 @@
 /*
-	SFE_BMP180.h
+	BMP180.h
 	Bosch BMP180 pressure sensor library for the Arduino microcontroller
 	Mike Grusin, SparkFun Electronics
 
@@ -16,8 +16,8 @@
 	buy me a (root) beer someday.
 */
 
-#ifndef SFE_BMP180_h
-#define SFE_BMP180_h
+#ifndef BMP180_h
+#define BMP180_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
@@ -25,10 +25,10 @@
 #include "WProgram.h"
 #endif
 
-class SFE_BMP180
+class BMP180
 {
 	public:
-		SFE_BMP180(); // base type
+		BMP180(); // base type
 
 		char begin();
 			// call pressure.begin() to initialize BMP180 before use

@@ -4,17 +4,17 @@
 	forked from sparkfun/BMP180_Breakout (Mike Grusin, SparkFun Electronics)
 */
 
-#include <SFE_BMP180.h>
+#include <BMP180.h>
 #include <Wire.h>
 #include <stdio.h>
 #include <math.h>
 
 
-SFE_BMP180::SFE_BMP180(){
+BMP180::BMP180(){
 }
 
 
-char SFE_BMP180::begin(){
+char BMP180::begin(){
 	double c3,c4,b1;
 	
 	// Start up the Arduino's "wire" (I2C) library:
@@ -116,7 +116,7 @@ char SFE_BMP180::begin(){
 }
 
 
-char SFE_BMP180::readInt(char address, int &value)
+char BMP180::readInt(char address, int &value)
 // Read a signed integer (two bytes) from device
 // address: register to start reading (plus subsequent register)
 // value: external variable to store data (function modifies value)
@@ -135,7 +135,7 @@ char SFE_BMP180::readInt(char address, int &value)
 }
 
 
-char SFE_BMP180::readUInt(char address, unsigned int &value)
+char BMP180::readUInt(char address, unsigned int &value)
 // Read an unsigned integer (two bytes) from device
 // address: register to start reading (plus subsequent register)
 // value: external variable to store data (function modifies value)
@@ -153,7 +153,7 @@ char SFE_BMP180::readUInt(char address, unsigned int &value)
 }
 
 
-char SFE_BMP180::readBytes(unsigned char *values, char length)
+char BMP180::readBytes(unsigned char *values, char length)
 // Read an array of bytes from device
 // values: external array to hold data. Put starting register in values[0].
 // length: number of bytes to read
@@ -177,7 +177,7 @@ char SFE_BMP180::readBytes(unsigned char *values, char length)
 }
 
 
-char SFE_BMP180::writeBytes(unsigned char *values, char length)
+char BMP180::writeBytes(unsigned char *values, char length)
 // Write an array of bytes to device
 // values: external array of data to write. Put starting register in values[0].
 // length: number of bytes to write
@@ -194,7 +194,7 @@ char SFE_BMP180::writeBytes(unsigned char *values, char length)
 }
 
 
-char SFE_BMP180::startTemperature(void)
+char BMP180::startTemperature(void)
 // Begin a temperature reading.
 // Will return delay in ms to wait, or 0 if I2C error
 {
@@ -210,7 +210,7 @@ char SFE_BMP180::startTemperature(void)
 }
 
 
-char SFE_BMP180::getTemperature(double &T)
+char BMP180::getTemperature(double &T)
 // Retrieve a previously-started temperature reading.
 // Requires begin() to be called once prior to retrieve calibration parameters.
 // Requires startTemperature() to have been called prior and sufficient time elapsed.
@@ -248,7 +248,7 @@ char SFE_BMP180::getTemperature(double &T)
 }
 
 
-char SFE_BMP180::startPressure(char oversampling)
+char BMP180::startPressure(char oversampling)
 // Begin a pressure reading.
 // Oversampling: 0 to 3, higher numbers are slower, higher-res outputs.
 // Will return delay in ms to wait, or 0 if I2C error.
@@ -288,7 +288,7 @@ char SFE_BMP180::startPressure(char oversampling)
 }
 
 
-char SFE_BMP180::getPressure(double &P, double &T)
+char BMP180::getPressure(double &P, double &T)
 // Retrieve a previously started pressure reading, calculate abolute pressure in mbars.
 // Requires begin() to be called once prior to retrieve calibration parameters.
 // Requires startPressure() to have been called prior and sufficient time elapsed.
@@ -338,7 +338,7 @@ char SFE_BMP180::getPressure(double &P, double &T)
 }
 
 
-double SFE_BMP180::sealevel(double P, double A)
+double BMP180::sealevel(double P, double A)
 // Given a pressure P (mb) taken at a specific altitude (meters),
 // return the equivalent pressure (mb) at sea level.
 // This produces pressure readings that can be used for weather measurements.
@@ -347,7 +347,7 @@ double SFE_BMP180::sealevel(double P, double A)
 }
 
 
-double SFE_BMP180::altitude(double P, double P0)
+double BMP180::altitude(double P, double P0)
 // Given a pressure measurement P (mb) and the pressure at a baseline P0 (mb),
 // return altitude (meters) above baseline.
 {
@@ -355,7 +355,7 @@ double SFE_BMP180::altitude(double P, double P0)
 }
 
 
-char SFE_BMP180::getError(void)
+char BMP180::getError(void)
 	// If any library command fails, you can retrieve an extended
 	// error code using this command. Errors are from the wire library: 
 	// 0 = Success
