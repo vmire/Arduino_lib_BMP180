@@ -1,19 +1,7 @@
 /*
-	SFE_BMP180.cpp
-	Bosch BMP180 pressure sensor library for the Arduino microcontroller
-	Mike Grusin, SparkFun Electronics
-
-	Uses floating-point equations from the Weather Station Data Logger project
-	http://wmrx00.sourceforge.net/
-	http://wmrx00.sourceforge.net/Arduino/BMP085-Calcs.pdf
-
-	Forked from BMP085 library by M.Grusin
-
-	version 1.0 2013/09/20 initial version
-
-	Our example code uses the "beerware" license. You can do anything
-	you like with this code. No really, anything. If you find it useful,
-	buy me a (root) beer someday.
+	BMP180.cpp
+	Bosch BMP180 pressure sensor library for the Arduino
+	forked from sparkfun/BMP180_Breakout (Mike Grusin, SparkFun Electronics)
 */
 
 #include <SFE_BMP180.h>
@@ -22,19 +10,14 @@
 #include <math.h>
 
 
-SFE_BMP180::SFE_BMP180()
-// Base library type
-{
+SFE_BMP180::SFE_BMP180(){
 }
 
 
-char SFE_BMP180::begin()
-// Initialize library for subsequent pressure measurements
-{
+char SFE_BMP180::begin(){
 	double c3,c4,b1;
 	
 	// Start up the Arduino's "wire" (I2C) library:
-	
 	Wire.begin();
 
 	// The BMP180 includes factory calibration data stored on the device.
@@ -42,7 +25,6 @@ char SFE_BMP180::begin()
 	// used in the calculations when taking pressure measurements.
 
 	// Retrieve calibration data from device:
-	
 	if (readInt(0xAA,AC1) &&
 		readInt(0xAC,AC2) &&
 		readInt(0xAE,AC3) &&
